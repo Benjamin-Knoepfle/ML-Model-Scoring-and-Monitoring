@@ -38,6 +38,8 @@ def train_model():
     #write the trained model to your workspace in a file called trainedmodel.pkl
     with open(os.path.join(model_path, model_name), 'wb') as fp:
         pickle.dump(model, fp)
+        
+    return model
 
 
 if __name__ == '__main__':
