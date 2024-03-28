@@ -21,12 +21,15 @@ model_name = config['model_name']
 
 
 #################Function for model scoring
-def score_model():
+def score_model(test_data=[]):
     #this function should take a trained model, load test data, and calculate an F1 score for the model relative to the test data
     #it should write the result to the latestscore.txt file
     #read the test data. Can read and concat mulitple csv files to one test_Data set if given 
+    
+    if len(test_data)==0:
+        test_data = os.listdir(test_data_path)
     test_data = pd.concat(
-        [pd.read_csv(os.path.join(test_data_path,input_file), index_col='corporation') for input_file in os.listdir(test_data_path) if input_file.endswith(".csv")]
+        [pd.read_csv(os.path.join(test_data_path,input_file), index_col='corporation') for input_file in test_data if input_file.endswith(".csv")]
     )
     ground_truth = test_data.pop('exited')
 
