@@ -23,17 +23,19 @@ prediction_model = None
 
 #######################Prediction Endpoint
 @app.route("/prediction", methods=['POST','OPTIONS'])
-def predict(data):        
+def predict():       
     #call the prediction function you created in Step 3
+    data_path = request.args.get('data_path')
+    data = diagnostics.read_input_data(data_path)
     predictions = diagnostics.model_predictions(data)
-    return predictions #add return value for prediction outputs
+    return json.dumps(str(predictions)) #add return value for prediction outputs
 
 #######################Scoring Endpoint
 @app.route("/scoring", methods=['GET','OPTIONS'])
 def score():        
     #check the score of the deployed model
     f1 = scoring.score_model()
-    return f1 #add return value (a single F1 score number)
+    return json.dumps(f1) #add return value (a single F1 score number)
 
 #######################Summary Statistics Endpoint
 @app.route("/summarystats", methods=['GET','OPTIONS'])
@@ -48,7 +50,7 @@ def diagnose():
     #check timing and percent NA values
     na_prcnt = diagnostics.dataframe_missing_values()
     timings = diagnostics.execution_time()
-    return #add return value for all diagnostics
+    return json.dumps(str([na_prcnt, timings])) #add return value for all diagnostics
 
 if __name__ == "__main__":    
     app.run(host='0.0.0.0', port=8000, debug=True, threaded=True)

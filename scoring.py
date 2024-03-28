@@ -42,3 +42,6 @@ def score_model():
         fp.write(str(f1))
         
     return f1
+
+if __name__ == '__main__':
+    score_model()
