@@ -1,34 +1,73 @@
-"[0, 1, 1, 1, 1]"
-0.5714285714285715
-[
-  {
-    "lastmonth_activity": {
-      "mean": 76.6,
-      "median": 34.0,
-      "std": 96.13948200401332
-    }
-  },
-  {
-    "lastyear_activity": {
-      "mean": 3100.4,
-      "median": 675.0,
-      "std": 5232.801907200386
-    }
-  },
-  {
-    "number_of_employees": {
-      "mean": 227.2,
-      "median": 25.0,
-      "std": 433.7138457554704
-    }
-  },
-  {
-    "exited": {
-      "mean": 0.6,
-      "median": 1.0,
-      "std": 0.5477225575051662
-    }
-  }
-]
-
-"[[{'lastmonth_activity': 0.0}, {'lastyear_activity': 0.0}, {'number_of_employees': 0.0}, {'exited': 0.0}], [0.004987639000319177, 0.004286813000362599]]"
+{'diagnostics': '"{\'na_percentage\': [{\'lastmonth_activity\': '
+                "0.0}, {'lastyear_activity': 0.0}, "
+                "{'number_of_employees': 0.0}, {'exited': 0.0}], "
+                "'timings': {'ingestion_duration': "
+                "0.007886798000072304, 'training_duration': "
+                '0.007886798000072304}}"\n',
+ 'f1_score': '0.5714285714285715\n',
+ 'outdated_packages': '"Package         Version Latest      Type '
+                      '--------------- ------- ----------- ----- '
+                      'Bottleneck      1.3.5   1.3.8       wheel '
+                      'click           7.1.2   8.1.7       wheel '
+                      'cycler          0.10.0  0.12.1      wheel '
+                      'fastapi         0.63.0  0.110.1     wheel '
+                      'flake8          5.0.4   7.0.0       wheel '
+                      'Flask           1.1.2   3.0.2       wheel '
+                      'gunicorn        20.0.4  21.2.0      wheel '
+                      'itsdangerous    1.1.0   2.1.2       wheel '
+                      'Jinja2          2.11.3  3.1.3       wheel '
+                      'joblib          1.0.1   1.3.2       wheel '
+                      'kiwisolver      1.3.1   1.4.5       wheel '
+                      'MarkupSafe      1.1.1   2.1.5       wheel '
+                      'matplotlib      3.3.4   3.7.5       wheel '
+                      'numexpr         2.8.4   2.8.6       wheel '
+                      'numpy           1.20.1  1.24.4      wheel '
+                      'olefile         0.46    0.47        wheel '
+                      'pandas          1.2.2   2.0.3       wheel '
+                      'Pillow          8.1.0   10.3.0      wheel '
+                      'pydantic        1.10.14 2.6.4       wheel '
+                      'pyflakes        2.5.0   3.2.0       wheel '
+                      'pyparsing       2.4.7   3.1.2       wheel '
+                      'python-dateutil 2.8.1   2.9.0.post0 wheel '
+                      'pytz            2021.1  2024.1      wheel '
+                      'scikit-learn    0.24.1  1.3.2       wheel '
+                      'scipy           1.6.1   1.10.1      wheel '
+                      'seaborn         0.11.1  0.13.2      wheel '
+                      'sip             6.7.12  6.8.3       wheel '
+                      'six             1.15.0  1.16.0      wheel '
+                      'sklearn         0.0     0.0.post12  sdist '
+                      'starlette       0.13.6  0.37.2      wheel '
+                      'threadpoolctl   2.1.0   3.4.0       wheel '
+                      'tornado         6.3.3   6.4         wheel '
+                      'Werkzeug        1.0.1   3.0.2       wheel "\n',
+ 'prediction': '"[0, 1, 1, 1, 1]"\n',
+ 'summary_stats': '[\n'
+                  '  {\n'
+                  '    "lastmonth_activity": {\n'
+                  '      "mean": 76.6, \n'
+                  '      "median": 34.0, \n'
+                  '      "std": 96.13948200401332\n'
+                  '    }\n'
+                  '  }, \n'
+                  '  {\n'
+                  '    "lastyear_activity": {\n'
+                  '      "mean": 3100.4, \n'
+                  '      "median": 675.0, \n'
+                  '      "std": 5232.801907200386\n'
+                  '    }\n'
+                  '  }, \n'
+                  '  {\n'
+                  '    "number_of_employees": {\n'
+                  '      "mean": 227.2, \n'
+                  '      "median": 25.0, \n'
+                  '      "std": 433.7138457554704\n'
+                  '    }\n'
+                  '  }, \n'
+                  '  {\n'
+                  '    "exited": {\n'
+                  '      "mean": 0.6, \n'
+                  '      "median": 1.0, \n'
+                  '      "std": 0.5477225575051662\n'
+                  '    }\n'
+                  '  }\n'
+                  ']\n'}
