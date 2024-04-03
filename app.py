@@ -28,21 +28,21 @@ def predict():
     data_path = request.args.get('data_path')
     data = diagnostics.read_input_data(data_path)
     predictions = diagnostics.model_predictions(data)
-    return json.dumps(str(predictions)) #add return value for prediction outputs
+    return jsonify(str(predictions)) #add return value for prediction outputs
 
 #######################Scoring Endpoint
 @app.route("/scoring", methods=['GET','OPTIONS'])
 def score():        
     #check the score of the deployed model
     f1 = scoring.score_model()
-    return json.dumps(f1) #add return value (a single F1 score number)
+    return jsonify(f1) #add return value (a single F1 score number)
 
 #######################Summary Statistics Endpoint
 @app.route("/summarystats", methods=['GET','OPTIONS'])
 def summarize_stats():        
     #check means, medians, and modes for each column
     summary_statistics = diagnostics.dataframe_summary()
-    return json.dumps(summary_statistics)  #return a list of all calculated summary statistics
+    return jsonify(summary_statistics)  #return a list of all calculated summary statistics
 
 #######################Diagnostics Endpoint
 @app.route("/diagnostics", methods=['GET','OPTIONS'])
@@ -50,7 +50,7 @@ def diagnose():
     #check timing and percent NA values
     na_prcnt = diagnostics.dataframe_missing_values()
     timings = diagnostics.execution_time()
-    return json.dumps(str([na_prcnt, timings])) #add return value for all diagnostics
+    return jsonify(str([na_prcnt, timings])) #add return value for all diagnostics
 
 
 #######################Diagnostics Endpoint

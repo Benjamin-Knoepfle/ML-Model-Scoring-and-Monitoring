@@ -2,6 +2,7 @@ import requests
 import diagnostics
 import json
 import os
+from pprint import pprint
 
 #Specify a URL that resolves to your workspace
 URL = "http://127.0.0.1:8080/"
@@ -21,10 +22,16 @@ response4 = requests.get(f'{URL}diagnostics').text
 response5 = requests.get(f'{URL}outdatedpackages').text
 
 #combine all API responses
-responses = "\n".join([response1, response2, response3, response4, response5])
+responses = {
+    'prediction': response1,
+    'f1_score': response2,
+    'summary_stats': response3,
+    'diagnostics': response4,
+    'outdated_packages': response5
+}
 
 #write the responses to your workspace
 with open(os.path.join(output_model_path,'apireturns.txt'), 'w') as fp:
-    fp.write(responses)
+    pprint(responses, width=70, stream=fp)
 
 

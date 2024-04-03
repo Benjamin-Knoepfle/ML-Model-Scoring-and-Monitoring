@@ -75,7 +75,7 @@ def outdated_packages_list():
     #get a list of 
     proc = subprocess.Popen(['python','-m', 'pip', 'list','-o'],stdout=subprocess.PIPE, text=True)
     packages = proc.stdout.read()
-    return packages
+    return packages.replace('\n', ' ')
     
     
     
