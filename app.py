@@ -42,7 +42,7 @@ def score():
 def summarize_stats():        
     #check means, medians, and modes for each column
     summary_statistics = diagnostics.dataframe_summary()
-    return summary_statistics #return a list of all calculated summary statistics
+    return json.dumps(summary_statistics)  #return a list of all calculated summary statistics
 
 #######################Diagnostics Endpoint
 @app.route("/diagnostics", methods=['GET','OPTIONS'])
@@ -52,5 +52,15 @@ def diagnose():
     timings = diagnostics.execution_time()
     return json.dumps(str([na_prcnt, timings])) #add return value for all diagnostics
 
+
+#######################Diagnostics Endpoint
+@app.route("/outdatedpackages", methods=['GET','OPTIONS'])
+def outdated_packages():        
+    #check timing and percent NA values
+    packages = diagnostics.outdated_packages_list()
+    return jsonify(packages) #add return value for all diagnostics
+
+
+
 if __name__ == "__main__":    
-    app.run(host='0.0.0.0', port=8000, debug=True, threaded=True)
+    app.run(host='0.0.0.0', port=8080, debug=True, threaded=True)

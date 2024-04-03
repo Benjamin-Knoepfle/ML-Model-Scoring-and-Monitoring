@@ -8,7 +8,6 @@ import pickle
 
 import subprocess
 import sys
-from pip import _internal
 
 ##################Load config.json and get environment variables
 with open('config.json','r') as f:
@@ -74,15 +73,19 @@ def execution_time():
 ##################Function to check dependencies
 def outdated_packages_list():
     #get a list of 
-    modules = _internal.main(['list','-o'])
+    proc = subprocess.Popen(['python','-m', 'pip', 'list','-o'],stdout=subprocess.PIPE, text=True)
+    packages = proc.stdout.read()
+    return packages
+    
+    
     
     
     
 if __name__ == '__main__':
-    model_predictions(read_input_data(test_data_path))
-    dataframe_summary()
-    execution_time()
-    outdated_packages_list()
+    #model_predictions(read_input_data(test_data_path))
+    #dataframe_summary()
+    #execution_time()
+    print(outdated_packages_list())
 
 
 

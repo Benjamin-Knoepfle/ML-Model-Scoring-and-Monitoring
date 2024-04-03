@@ -4,7 +4,7 @@ import json
 import os
 
 #Specify a URL that resolves to your workspace
-URL = "http://127.0.0.1:8000/"
+URL = "http://127.0.0.1:8080/"
 
 with open('config.json','r') as f:
     config = json.load(f) 
@@ -18,9 +18,10 @@ response1 = requests.post(f'{URL}prediction?data_path={test_data_path}').text #p
 response2 = requests.get(f'{URL}scoring').text #put an API call here
 response3 = requests.get(f'{URL}summarystats').text
 response4 = requests.get(f'{URL}diagnostics').text
+response5 = requests.get(f'{URL}outdatedpackages').text
 
 #combine all API responses
-responses = "\n".join([response1, response2, response3, response4])
+responses = "\n".join([response1, response2, response3, response4, response5])
 
 #write the responses to your workspace
 with open(os.path.join(output_model_path,'apireturns.txt'), 'w') as fp:

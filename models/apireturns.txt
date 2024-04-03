@@ -1,34 +1,5 @@
 "[0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0]"
-0.3333333333333333
-[
-  {
-    "lastmonth_activity": {
-      "mean": 76.6,
-      "median": 34.0,
-      "std": 96.13948200401332
-    }
-  },
-  {
-    "lastyear_activity": {
-      "mean": 3100.4,
-      "median": 675.0,
-      "std": 5232.801907200386
-    }
-  },
-  {
-    "number_of_employees": {
-      "mean": 227.2,
-      "median": 25.0,
-      "std": 433.7138457554704
-    }
-  },
-  {
-    "exited": {
-      "mean": 0.6,
-      "median": 1.0,
-      "std": 0.5477225575051662
-    }
-  }
-]
-
-"[[{'lastmonth_activity': 0.0}, {'lastyear_activity': 0.0}, {'number_of_employees': 0.0}, {'exited': 0.0}], [0.005134918999829097, 0.00445432400010759]]"
+0.5454545454545455
+[{"lastmonth_activity": {"mean": 5625.923076923077, "std": 19444.774621317832, "median": 425.0}}, {"lastyear_activity": {"mean": 763.5384615384615, "std": 2016.6093569309694, "median": 97.5}}, {"number_of_employees": {"mean": 457.46153846153845, "std": 800.6048328991891, "median": 99.0}}, {"exited": {"mean": 0.5, "std": 0.5099019513592785, "median": 0.5}}]
+"[[{'lastmonth_activity': 0.0}, {'lastyear_activity': 0.0}, {'number_of_employees': 0.0}, {'exited': 0.0}], [0.009444108000025153, 0.005505574000380875]]"
+"Package         Version Latest      Type\n--------------- ------- ----------- -----\nBottleneck      1.3.5   1.3.8       wheel\nclick           7.1.2   8.1.7       wheel\ncycler          0.10.0  0.12.1      wheel\nfastapi         0.63.0  0.110.1     wheel\nflake8          5.0.4   7.0.0       wheel\nFlask           1.1.2   3.0.2       wheel\ngunicorn        20.0.4  21.2.0      wheel\nitsdangerous    1.1.0   2.1.2       wheel\nJinja2          2.11.3  3.1.3       wheel\njoblib          1.0.1   1.3.2       wheel\nkiwisolver      1.3.1   1.4.5       wheel\nMarkupSafe      1.1.1   2.1.5       wheel\nmatplotlib      3.3.4   3.7.5       wheel\nnumexpr         2.8.4   2.8.6       wheel\nnumpy           1.20.1  1.24.4      wheel\nolefile         0.46    0.47        wheel\npandas          1.2.2   2.0.3       wheel\nPillow          8.1.0   10.3.0      wheel\npydantic        1.10.14 2.6.4       wheel\npyflakes        2.5.0   3.2.0       wheel\npyparsing       2.4.7   3.1.2       wheel\npython-dateutil 2.8.1   2.9.0.post0 wheel\npytz            2021.1  2024.1      wheel\nscikit-learn    0.24.1  1.3.2       wheel\nscipy           1.6.1   1.10.1      wheel\nseaborn         0.11.1  0.13.2      wheel\nsip             6.7.12  6.8.3       wheel\nsix             1.15.0  1.16.0      wheel\nsklearn         0.0     0.0.post12  sdist\nstarlette       0.13.6  0.37.2      wheel\nthreadpoolctl   2.1.0   3.4.0       wheel\ntornado         6.3.3   6.4         wheel\nWerkzeug        1.0.1   3.0.2       wheel\n"
