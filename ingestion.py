@@ -4,7 +4,6 @@ import pandas as pd
 import utils
 
 
-    
 # Function for data ingestion
 def merge_multiple_dataframe(mode='development'):
     config = utils.load_configuration(mode)

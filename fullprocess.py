@@ -6,6 +6,7 @@ import training
 import scoring
 import deployment
 import reporting
+import apicalls
 
 config = utils.load_configuration('production')
 dataset_csv_path = os.path.join(config['output_folder_path'])
@@ -40,7 +41,7 @@ def run():
         f1_model = float(fp.read())
 
     print("Scoring against new data")
-    model_prod = scoring.read_model('production')
+    model_prod = utils.read_model('production')
     f1_new = scoring.score_model(model_prod, test_data=new_data, mode='production')
 
     # Deciding whether to proceed, part 2
@@ -52,8 +53,8 @@ def run():
         return
 
     print("Model drift detected. Preparing data and start re-training.")
-    ingestion.merge_multiple_dataframe()
-    model = training.train_model()
+    ingestion.merge_multiple_dataframe('production')
+    model = training.train_model('production')
     print("Creating new test score")
     scoring.score_model(model, write=True, mode='production')
     # Re-deployment
@@ -66,6 +67,7 @@ def run():
     reporting.score_model('production')
     # run diagnostics using the apicalls ;) do not forget to run the flask
     # server first by starting app.py in another terminal
+    apicalls.call_api('production')
 
 
 

@@ -1,18 +1,7 @@
-import pickle
 import os
 import pandas as pd
 from sklearn import metrics
 import utils
-
-def read_model(mode='development'):
-    # load model
-    config = utils.load_configuration(mode)
-    model_path = os.path.join(config['output_model_path'])
-    model_name = config['model_name']
-    model_file = os.path.join(model_path, model_name)
-    with open(os.path.join(model_file), 'rb') as fp:
-        model = pickle.load(fp)
-    return model
 
 # Function for model scoring
 
@@ -25,9 +14,7 @@ def score_model(model=None, test_data=[], write=False, mode='development'):
     # test_Data set if given
     config = utils.load_configuration(mode)
     test_data_path = os.path.join(config['test_data_path'])
-    prod_deployment_path = os.path.join(config['prod_deployment_path'])
     model_path = os.path.join(config['output_model_path'])
-    model_name = config['model_name']
 
     if len(test_data) == 0:
         test_data = os.listdir(test_data_path)
@@ -45,7 +32,7 @@ def score_model(model=None, test_data=[], write=False, mode='development'):
 
     # if no model is given, load the deployed model
     if model is None:
-        model = read_model(os.path.join(prod_deployment_path, model_name))
+        model = utils.read_model(mode)
 
     # create prediction on test_data
     prediction = model.predict(test_data)
@@ -62,6 +49,6 @@ def score_model(model=None, test_data=[], write=False, mode='development'):
 
 if __name__ == '__main__':
     score_model(
-        read_model(),
+        utils.read_model('development'),
         write=True
     )

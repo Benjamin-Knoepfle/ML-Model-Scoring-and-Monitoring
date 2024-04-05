@@ -2,8 +2,8 @@
                 "0.0}, {'lastyear_activity': 0.0}, "
                 "{'number_of_employees': 0.0}, {'exited': 0.0}], "
                 "'timings': {'ingestion_duration': "
-                "0.008028806999391236, 'training_duration': "
-                '0.0060654129993054084}}"\n',
+                "0.00737755099999049, 'training_duration': "
+                '0.005677881000337948}}"\n',
  'f1_score': '0.5454545454545455\n',
  'outdated_packages': '"Package         Version Latest      Type '
                       '--------------- ------- ----------- ----- '

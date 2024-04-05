@@ -1,35 +1,19 @@
-import os
-import pickle
 import timeit
 import subprocess
+import functools
 import pandas as pd
 import utils
+import ingestion
+import training
 
-
-# Load config.json and get environment variables
-config = utils.load_configuration('development')
-dataset_csv_path = os.path.join(config['output_folder_path'])
-test_data_path = os.path.join(config['test_data_path'])
-prod_deployment_path = os.path.join(config['prod_deployment_path'])
-model_name = config['model_name']
-
-
-def read_input_data(data_path: str):
-    input_data = pd.concat(
-        [pd.read_csv(os.path.join(data_path, input_file), index_col='corporation')
-         for input_file in os.listdir(data_path) if input_file.endswith(".csv")
-         ]
-    )
-    return input_data
 
 # Function to get model predictions
 
 
-def model_predictions(input_data: pd.DataFrame):
+def model_predictions(input_data: pd.DataFrame, mode='development'):
     # read the deployed model and a test dataset, calculate predictions
     # read deployed model
-    with open(os.path.join(prod_deployment_path, model_name), 'rb') as fp:
-        model = pickle.load(fp)
+    model = utils.read_model(mode)
     # drop target column if in data
     if 'exited' in input_data.columns:
         input_data = input_data.drop(['exited'], axis=1)
@@ -42,8 +26,8 @@ def model_predictions(input_data: pd.DataFrame):
 # Function to get summary statistics
 
 
-def dataframe_summary():
-    data = read_input_data(test_data_path)
+def dataframe_summary(mode='development'):
+    data = utils.read_input_data(mode)
     # calculate summary statistics here
     summary_statistics = data.describe().loc[['mean', 'std', '50%']]
     summary_statistics.index = ['mean', 'std', 'median']
@@ -54,8 +38,8 @@ def dataframe_summary():
 # Function to get percentage of missing data
 
 
-def dataframe_missing_values():
-    data = read_input_data(test_data_path)
+def dataframe_missing_values(mode='development'):
+    data = utils.read_input_data(mode)
     # For ease of use I will leverage the count values of the describe method
     # because it counts the non-null values ;)
     samples = len(data)
@@ -67,14 +51,23 @@ def dataframe_missing_values():
 
 
 # Function to get timings
-def execution_time():
+def execution_time(mode='development'):
     # calculate timing of training.py and ingestion.py
-    import ingestion
     ingestion_duration = timeit.timeit(
-        ingestion.merge_multiple_dataframe, number=1)
+        functools.partial(
+            ingestion.merge_multiple_dataframe,
+            mode
+            ),
+        number=1
+        )
 
-    import training
-    training_duration = timeit.timeit(training.train_model, number=1)
+    training_duration = timeit.timeit(
+        functools.partial(
+            training.train_model,
+            mode
+            ),
+        number=1
+        )
 
     # return a list of 2 timing values in seconds
     return [ingestion_duration, training_duration]
@@ -93,7 +86,7 @@ def outdated_packages_list():
 
 
 if __name__ == '__main__':
-    model_predictions(read_input_data(test_data_path))
+    model_predictions(utils.read_input_data('development'))
     dataframe_summary()
     execution_time()
     print(outdated_packages_list())

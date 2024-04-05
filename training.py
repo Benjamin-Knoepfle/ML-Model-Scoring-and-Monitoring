@@ -8,7 +8,6 @@ import utils
 
 # Function for training the model
 def train_model(mode='development'):
-    
     config = utils.load_configuration(mode)
     input_folder_path = config['output_folder_path']
     input_name = config['final_data_name']

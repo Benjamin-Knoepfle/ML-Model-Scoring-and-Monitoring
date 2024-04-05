@@ -6,7 +6,7 @@ import utils
 
 
 def store_model_into_pickle(mode='development'):
-    # copy the latest pickle file, the latestscore.txt value, 
+    # copy the latest pickle file, the latestscore.txt value,
     # and the ingestfiles.txt file into the deployment directory
     # copy the latest pickle file
     config = utils.load_configuration(mode)
@@ -14,7 +14,6 @@ def store_model_into_pickle(mode='development'):
     model_path = os.path.join(config['output_model_path'])
     model_name = config['model_name']
     deployment_path = os.path.join(config['prod_deployment_path'])
-    
     latest_pickle_file = os.path.join(model_path, model_name)
     deploy_pickle_file = os.path.join(deployment_path, model_name)
     shutil.copyfile(latest_pickle_file, deploy_pickle_file)
@@ -29,5 +28,5 @@ def store_model_into_pickle(mode='development'):
 
 
 if __name__ == '__main__':
-    
     store_model_into_pickle()
+    

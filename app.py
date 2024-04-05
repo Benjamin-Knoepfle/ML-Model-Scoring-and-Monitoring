@@ -19,8 +19,8 @@ prediction_model = None
 @app.route("/prediction", methods=['POST', 'OPTIONS'])
 def predict():
     # call the prediction function you created in Step 3
-    data_path = request.args.get('data_path')
-    data = diagnostics.read_input_data(data_path)
+    mode = request.args.get('mode')
+    data = utils.read_input_data(mode)
     predictions = diagnostics.model_predictions(data)
     return jsonify(str(predictions))  # add return value for prediction outputs
 
@@ -30,7 +30,8 @@ def predict():
 @app.route("/scoring", methods=['GET', 'OPTIONS'])
 def score():
     # check the score of the deployed model
-    f1 = scoring.score_model()
+    mode = request.args.get('mode')
+    f1 = scoring.score_model(mode=mode)
     return jsonify(f1)  # add return value (a single F1 score number)
 
 # Summary Statistics Endpoint
@@ -55,7 +56,7 @@ def diagnose():
         'na_percentage': na_prcnt,
         'timings': {
             'ingestion_duration': timings[0],
-            'training_duration': timings[0]
+            'training_duration': timings[1]
         }
     }
     return jsonify(str(diagnosis))  # add return value for all diagnostics
